@@ -19,6 +19,6 @@ AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'f'] <- 'IF'
 AEMTDialFULL$Speakers <- factor(AEMTDialFULL$Speakers)
 
 
-connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.csv",open="at")
+connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
 write.table(AEMTDialFULL, connection, sep="\t")
 
