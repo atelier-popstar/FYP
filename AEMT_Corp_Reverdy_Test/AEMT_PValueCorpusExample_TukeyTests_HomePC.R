@@ -8,14 +8,6 @@
 ### aemt01
 ######################################################################
 
-AEMTDialLocation <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFull.DATA"
-AEMTDialFULL<- read.table(AEMTDialLocation,header=TRUE,sep="\t")
-aemt01 <- AEMTDialFULL[AEMTDialFULL$DialID=="aemt01",]
-#summary(aemt01)
-#Drop factor levels in a subsetted data frame we have to 'refactorize' them
-aemt01$DialID <- factor(aemt01$DialID)
-attach(aemt01)
-
 PValuesLoc1 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/PValues/TukeyTestLevelaemt01_OS"
 PValuesLoc2 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/PValues/TukeyTestLevelaemt01_SS"
 PValuesLoc3 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/PValues/TukeyTestLevelaemt02_OS"
@@ -97,6 +89,16 @@ UnderConfInt2Loc9 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test
 UnderConfInt2Loc10 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisRUnder/ConfidenceIntervals/Clglm/Claemt02N1_SS"
 UnderConfInt2Loc11 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisRUnder/ConfidenceIntervals/Clglm/Claemt02N2_OS"
 UnderConfInt2Loc12 <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisRUnder/ConfidenceIntervals/Clglm/Claemt02N2_SS"
+
+
+AEMTDialLocation <- "C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFull.DATA"
+AEMTDialFULL<- read.table(AEMTDialLocation,header=TRUE,sep="\t")
+aemt01 <- AEMTDialFULL[AEMTDialFULL$DialID=="aemt01",]
+#summary(aemt01)
+#Drop factor levels in a subsetted data frame we have to 'refactorize' them
+aemt01$DialID <- factor(aemt01$DialID)
+attach(aemt01)
+
 
 Level <- factor(Level)
 REALITY <- Reality < 1
