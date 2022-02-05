@@ -1,0 +1,11 @@
+aemt01N2_OSN2PValue
+aemt01 IG 1 0.01
+aemt01 IF 1 0.01
+aemt01 IG 2 0.01
+aemt01 IF 2 0.01
+aemt01 IG 3 0.01
+aemt01 IF 3 0.01
+aemt01 IG 4 1.0000
+aemt01 IF 4 0.01
+aemt01 IG 5 0.01
+aemt01 IF 5 0.01

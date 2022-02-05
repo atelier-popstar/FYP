@@ -1,0 +1,193 @@
+#!/bin/bash
+
+perl ./pValuesMTaemt01_OS.pl
+
+perl ./pValuesMTaemt01_OSN1.pl
+
+perl ./pValuesMTaemt01_OSN2.pl
+
+perl ./pValuesMTaemt01_SS.pl
+
+perl ./pValuesMTaemt01_SSN1.pl
+
+perl ./pValuesMTaemt01_SSN2.pl
+
+perl ./pValuesMTaemt02_OS.pl
+
+perl ./pValuesMTaemt02_OSN1.pl
+
+perl ./pValuesMTaemt02_OSN2.pl
+
+perl ./pValuesMTaemt02_SS.pl
+
+perl ./pValuesMTaemt02_SSN1.pl
+
+perl ./pValuesMTaemt02_SSN2.pl
+
+perl ./pValuesMTaemt03_OS.pl
+
+perl ./pValuesMTaemt03_OSN1.pl
+
+perl ./pValuesMTaemt03_OSN2.pl
+
+perl ./pValuesMTaemt03_SS.pl
+
+perl ./pValuesMTaemt03_SSN1.pl
+
+perl ./pValuesMTaemt03_SSN2.pl
+
+perl ./pValuesMTaemt04_OS.pl
+
+perl ./pValuesMTaemt04_OSN1.pl
+
+perl ./pValuesMTaemt04_OSN2.pl
+
+perl ./pValuesMTaemt04_SS.pl
+
+perl ./pValuesMTaemt04_SSN1.pl
+
+perl ./pValuesMTaemt04_SSN2.pl
+
+perl ./pValuesMTaemt05_OS.pl
+
+perl ./pValuesMTaemt05_OSN1.pl
+
+perl ./pValuesMTaemt05_OSN2.pl
+
+perl ./pValuesMTaemt05_SS.pl
+
+perl ./pValuesMTaemt05_SSN1.pl
+
+perl ./pValuesMTaemt05_SSN2.pl
+
+perl ./pValuesMTaemt06_OS.pl
+
+perl ./pValuesMTaemt06_OSN1.pl
+
+perl ./pValuesMTaemt06_OSN2.pl
+
+perl ./pValuesMTaemt06_SS.pl
+
+perl ./pValuesMTaemt06_SSN1.pl
+
+perl ./pValuesMTaemt06_SSN2.pl
+
+perl ./pValuesMTaemt07_OS.pl
+
+perl ./pValuesMTaemt07_OSN1.pl
+
+perl ./pValuesMTaemt07_OSN2.pl
+
+perl ./pValuesMTaemt07_SS.pl
+
+perl ./pValuesMTaemt07_SSN1.pl
+
+perl ./pValuesMTaemt07_SSN2.pl
+
+perl ./pValuesMTaemt08_OS.pl
+
+perl ./pValuesMTaemt08_OSN1.pl
+
+perl ./pValuesMTaemt08_OSN2.pl
+
+perl ./pValuesMTaemt08_SS.pl
+
+perl ./pValuesMTaemt08_SSN1.pl
+
+perl ./pValuesMTaemt08_SSN2.pl
+
+perl ./pValuesMTaemt09_OS.pl
+
+perl ./pValuesMTaemt09_OSN1.pl
+
+perl ./pValuesMTaemt09_OSN2.pl
+
+perl ./pValuesMTaemt09_SS.pl
+
+perl ./pValuesMTaemt09_SSN1.pl
+
+perl ./pValuesMTaemt09_SSN2.pl
+
+perl ./pValuesMTaemt10_OS.pl
+
+perl ./pValuesMTaemt10_OSN1.pl
+
+perl ./pValuesMTaemt10_OSN2.pl
+
+perl ./pValuesMTaemt10_SS.pl
+
+perl ./pValuesMTaemt10_SSN1.pl
+
+perl ./pValuesMTaemt10_SSN2.pl
+
+perl ./pValuesMTaemt11_OS.pl
+
+perl ./pValuesMTaemt11_OSN1.pl
+
+perl ./pValuesMTaemt11_OSN2.pl
+
+perl ./pValuesMTaemt11_SS.pl
+
+perl ./pValuesMTaemt11_SSN1.pl
+
+perl ./pValuesMTaemt11_SSN2.pl
+
+perl ./pValuesMTaemt12_OS.pl
+
+perl ./pValuesMTaemt12_OSN1.pl
+
+perl ./pValuesMTaemt12_OSN2.pl
+
+perl ./pValuesMTaemt12_SS.pl
+
+perl ./pValuesMTaemt12_SSN1.pl
+
+perl ./pValuesMTaemt12_SSN2.pl
+
+perl ./pValuesMTaemt13_OS.pl
+
+perl ./pValuesMTaemt13_OSN1.pl
+
+perl ./pValuesMTaemt13_OSN2.pl
+
+perl ./pValuesMTaemt13_SS.pl
+
+perl ./pValuesMTaemt13_SSN1.pl
+
+perl ./pValuesMTaemt13_SSN2.pl
+
+perl ./pValuesMTaemt14_OS.pl
+
+perl ./pValuesMTaemt14_OSN1.pl
+
+perl ./pValuesMTaemt14_OSN2.pl
+
+perl ./pValuesMTaemt14_SS.pl
+
+perl ./pValuesMTaemt14_SSN1.pl
+
+perl ./pValuesMTaemt14_SSN2.pl
+
+perl ./pValuesMTaemt15_OS.pl
+
+perl ./pValuesMTaemt15_OSN1.pl
+
+perl ./pValuesMTaemt15_OSN2.pl
+
+perl ./pValuesMTaemt15_SS.pl
+
+perl ./pValuesMTaemt15_SSN1.pl
+
+perl ./pValuesMTaemt15_SSN2.pl
+
+perl ./pValuesMTaemt16_OS.pl
+
+perl ./pValuesMTaemt16_OSN1.pl
+
+perl ./pValuesMTaemt16_OSN2.pl
+
+perl ./pValuesMTaemt16_SS.pl
+
+perl ./pValuesMTaemt16_SSN1.pl
+
+perl ./pValuesMTaemt16_SSN2.pl

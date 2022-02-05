@@ -1,0 +1,11 @@
+aemt02N1_SSN1PValue
+aemt02 IG 1 0.4472
+aemt02 IF 1 0.01
+aemt02 IG 2 0.3371
+aemt02 IF 2 0.0697
+aemt02 IG 3 0.0735
+aemt02 IF 3 0.01
+aemt02 IG 4 1.0000
+aemt02 IF 4 0.3105
+aemt02 IG 5 0.1357
+aemt02 IF 5 0.01

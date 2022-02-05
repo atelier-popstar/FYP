@@ -1,0 +1,164 @@
+Usage AEMT Corpus
+
+### Step 1: Corpus cleaning
+### Creation of tab and without tab corpus versions
+
+## Tip on using sed ###
+cd /path/to/your/folder
+sed -i 's/foo/bar/g' *
+##Occurrences of "foo" will be replaced with "bar".
+## create g and f with tabs
+sed -i 's/g   /g\t/g' *
+sed -i 's/f   /f\t/g' *
+## Remove empty lines
+sed -i '/^$/d' *
+## Remove punctuation
+sed -i 's/?/ /g' *
+sed -i 's/-/ /g' *
+
+## Remove Tabulation
+sed -i 's/g\t/g /g' *
+sed -i 's/f\t/f /g' *
+#####################
+Create the files and subfiles -> exemple:
+
+cd /home/justine/Desktop/AEMT/InteractionAnalysis_AEMT/Dialogue
+mkdir -p aemt01/AnalysisLemma aemt01/AnalysisLemma+POS aemt01/AnalysisPOS aemt01/AnalysisToken aemt01/AnalysisToken+POS
+
+MULTISIMO Analysis - Exact Token #######################
+
+Place in /CorpusTab
+perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt01.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt02.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt03.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt04.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt05.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt06.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt07.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt08.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt09.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt10.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt11.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt12.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt13.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt14.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt15.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt16.txt
+
+###############################
+
+# MOVE ALL Files in there correct folder 
+
+mv Corpus/CorpusTab/aemt01.txt.iy.p0.c1 Dialogue/aemt01/AnalysisToken | mv Corpus/CorpusTab/aemt02.txt.iy.p0.c1 Dialogue/aemt02/AnalysisToken | mv Corpus/CorpusTab/aemt03.txt.iy.p0.c1 Dialogue/aemt03/AnalysisToken | mv Corpus/CorpusTab/aemt04.txt.iy.p0.c1 Dialogue/aemt04/AnalysisToken | mv Corpus/CorpusTab/aemt05.txt.iy.p0.c1 Dialogue/aemt05/AnalysisToken | mv Corpus/CorpusTab/aemt06.txt.iy.p0.c1 Dialogue/aemt06/AnalysisToken | mv Corpus/CorpusTab/aemt07.txt.iy.p0.c1 Dialogue/aemt07/AnalysisToken | mv Corpus/CorpusTab/aemt08.txt.iy.p0.c1 Dialogue/aemt08/AnalysisToken | mv Corpus/CorpusTab/aemt09.txt.iy.p0.c1 Dialogue/aemt09/AnalysisToken | mv Corpus/CorpusTab/aemt10.txt.iy.p0.c1 Dialogue/aemt10/AnalysisToken | mv Corpus/CorpusTab/aemt11.txt.iy.p0.c1 Dialogue/aemt11/AnalysisToken | mv Corpus/CorpusTab/aemt12.txt.iy.p0.c1 Dialogue/aemt12/AnalysisToken | mv Corpus/CorpusTab/aemt13.txt.iy.p0.c1 Dialogue/aemt13/AnalysisToken | mv Corpus/CorpusTab/aemt14.txt.iy.p0.c1 Dialogue/aemt14/AnalysisToken | mv Corpus/CorpusTab/aemt15.txt.iy.p0.c1 Dialogue/aemt15/AnalysisToken | mv Corpus/CorpusTab/aemt16.txt.iy.p0.c1 Dialogue/aemt16/AnalysisToken
+
+
+###############################
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisToken/aemt01.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisToken/aemt02.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt03/AnalysisToken/aemt03.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt04/AnalysisToken/aemt04.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt05/AnalysisToken/aemt05.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt06/AnalysisToken/aemt06.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt07/AnalysisToken/aemt07.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt08/AnalysisToken/aemt08.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt09/AnalysisToken/aemt09.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt10/AnalysisToken/aemt10.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt11/AnalysisToken/aemt11.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt12/AnalysisToken/aemt12.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt13/AnalysisToken/aemt13.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt14/AnalysisToken/aemt14.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt15/AnalysisToken/aemt15.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt16/AnalysisToken/aemt16.txt.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeToken.sh
+
+#### Concatenation of the results
+
+cat Dialogue/aemt01/AnalysisToken/*.parsed >  Dialogue/merged_aemt01Token.data | cat Dialogue/aemt02/AnalysisToken/*.parsed >  Dialogue/merged_aemt02Token.data |cat Dialogue/aemt03/AnalysisToken/*.parsed >  Dialogue/merged_aemt03Token.data | cat Dialogue/aemt04/AnalysisToken/*.parsed >  Dialogue/merged_aemt04Token.data | cat Dialogue/aemt05/AnalysisToken/*.parsed >  Dialogue/merged_aemt05Token.data | cat Dialogue/aemt06/AnalysisToken/*.parsed >  Dialogue/merged_aemt06Token.data | cat Dialogue/aemt07/AnalysisToken/*.parsed >  Dialogue/merged_aemt07Token.data | cat Dialogue/aemt08/AnalysisToken/*.parsed >  Dialogue/merged_aemt08Token.data |cat Dialogue/aemt09/AnalysisToken/*.parsed >  Dialogue/merged_aemt09Token.data | cat Dialogue/aemt10/AnalysisToken/*.parsed >  Dialogue/merged_aemt10Token.data | cat Dialogue/aemt11/AnalysisToken/*.parsed >  Dialogue/merged_aemt11Token.data | cat Dialogue/aemt12/AnalysisToken/*.parsed >  Dialogue/merged_aemt12Token.data |cat Dialogue/aemt13/AnalysisToken/*.parsed >  Dialogue/merged_aemt13Token.data | cat Dialogue/aemt14/AnalysisToken/*.parsed >  Dialogue/merged_aemt14Token.data |cat Dialogue/aemt15/AnalysisToken/*.parsed >  Dialogue/merged_aemt15Token.data | cat Dialogue/aemt16/AnalysisToken/*.parsed >  Dialogue/merged_aemt16Token.data
+
+
+################################################################
+	     AEMT Analysis - Lemma  ############################
+
+perl ./preprocesstreetag-lemma-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisLemma/aemt**-lemma
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisLemma/aemt01-lemma | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisLemma/aemt02-lemma | perl ./iyp-treat.pl -i Dialogue/aemt03/AnalysisLemma/aemt03-lemma | perl ./iyp-treat.pl -i Dialogue/aemt04/AnalysisLemma/aemt04-lemma | perl ./iyp-treat.pl -i Dialogue/aemt05/AnalysisLemma/aemt05-lemma | perl ./iyp-treat.pl -i Dialogue/aemt06/AnalysisLemma/aemt06-lemma | perl ./iyp-treat.pl -i Dialogue/aemt07/AnalysisLemma/aemt07-lemma | perl ./iyp-treat.pl -i Dialogue/aemt08/AnalysisLemma/aemt08-lemma | perl ./iyp-treat.pl -i Dialogue/aemt09/AnalysisLemma/aemt09-lemma | perl ./iyp-treat.pl -i Dialogue/aemt10/AnalysisLemma/aemt10-lemma | perl ./iyp-treat.pl -i Dialogue/aemt11/AnalysisLemma/aemt11-lemma | perl ./iyp-treat.pl -i Dialogue/aemt12/AnalysisLemma/aemt12-lemma | perl ./iyp-treat.pl -i Dialogue/aemt13/AnalysisLemma/aemt13-lemma | perl ./iyp-treat.pl -i Dialogue/aemt14/AnalysisLemma/aemt14-lemma | perl ./iyp-treat.pl -i Dialogue/aemt15/AnalysisLemma/aemt15-lemma | perl ./iyp-treat.pl -i Dialogue/aemt16/AnalysisLemma/aemt16-lemma
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisLemma/aemt01-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisLemma/aemt02-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt03/AnalysisLemma/aemt03-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt04/AnalysisLemma/aemt04-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt05/AnalysisLemma/aemt05-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt06/AnalysisLemma/aemt06-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt07/AnalysisLemma/aemt07-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt08/AnalysisLemma/aemt08-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt09/AnalysisLemma/aemt09-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt10/AnalysisLemma/aemt10-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt11/AnalysisLemma/aemt11-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt12/AnalysisLemma/aemt12-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt13/AnalysisLemma/aemt13-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt14/AnalysisLemma/aemt14-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt15/AnalysisLemma/aemt15-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt16/AnalysisLemma/aemt16-lemma.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeLemma.sh
+
+cat Dialogue/aemt01/AnalysisLemma/*.parsed >  Dialogue/merged_aemt01Lemma.data | cat Dialogue/aemt02/AnalysisLemma/*.parsed >  Dialogue/merged_aemt02Lemma.data |cat Dialogue/aemt03/AnalysisLemma/*.parsed >  Dialogue/merged_aemt03Lemma.data | cat Dialogue/aemt04/AnalysisLemma/*.parsed >  Dialogue/merged_aemt04Lemma.data | cat Dialogue/aemt05/AnalysisLemma/*.parsed >  Dialogue/merged_aemt05Lemma.data | cat Dialogue/aemt06/AnalysisLemma/*.parsed >  Dialogue/merged_aemt06Lemma.data | cat Dialogue/aemt07/AnalysisLemma/*.parsed >  Dialogue/merged_aemt07Lemma.data | cat Dialogue/aemt08/AnalysisLemma/*.parsed >  Dialogue/merged_aemt08Lemma.data |cat Dialogue/aemt09/AnalysisLemma/*.parsed >  Dialogue/merged_aemt09Lemma.data | cat Dialogue/aemt10/AnalysisLemma/*.parsed >  Dialogue/merged_aemt10Lemma.data | cat Dialogue/aemt11/AnalysisLemma/*.parsed >  Dialogue/merged_aemt11Lemma.data | cat Dialogue/aemt12/AnalysisLemma/*.parsed >  Dialogue/merged_aemt12Lemma.data |cat Dialogue/aemt13/AnalysisLemma/*.parsed >  Dialogue/merged_aemt13Lemma.data | cat Dialogue/aemt14/AnalysisLemma/*.parsed >  Dialogue/merged_aemt14Lemma.data |cat Dialogue/aemt15/AnalysisLemma/*.parsed >  Dialogue/merged_aemt15Lemma.data | cat Dialogue/aemt16/AnalysisLemma/*.parsed >  Dialogue/merged_aemt16Lemma.data
+
+###################################################################
+		AEMT Analysis - Lemma+POS  ########################
+
+perl ./preprocesstreetag-lemma-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisLemma+POS/aemt**-lemma-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisLemma+POS/aemt01-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisLemma+POS/aemt02-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt03/AnalysisLemma+POS/aemt03-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt04/AnalysisLemma+POS/aemt04-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt05/AnalysisLemma+POS/aemt05-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt06/AnalysisLemma+POS/aemt06-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt07/AnalysisLemma+POS/aemt07-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt08/AnalysisLemma+POS/aemt08-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt09/AnalysisLemma+POS/aemt09-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt10/AnalysisLemma+POS/aemt10-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt11/AnalysisLemma+POS/aemt11-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt12/AnalysisLemma+POS/aemt12-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt13/AnalysisLemma+POS/aemt13-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt14/AnalysisLemma+POS/aemt14-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt15/AnalysisLemma+POS/aemt15-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt16/AnalysisLemma+POS/aemt16-lemma-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisLemma+POS/aemt01-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisLemma+POS/aemt02-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt03/AnalysisLemma+POS/aemt03-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt04/AnalysisLemma+POS/aemt04-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt05/AnalysisLemma+POS/aemt05-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt06/AnalysisLemma+POS/aemt06-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt07/AnalysisLemma+POS/aemt07-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt08/AnalysisLemma+POS/aemt08-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt09/AnalysisLemma+POS/aemt09-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt10/AnalysisLemma+POS/aemt10-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt11/AnalysisLemma+POS/aemt11-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt12/AnalysisLemma+POS/aemt12-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt13/AnalysisLemma+POS/aemt13-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt14/AnalysisLemma+POS/aemt14-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt15/AnalysisLemma+POS/aemt15-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt16/AnalysisLemma+POS/aemt16-lemma-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeLemmaPOS.sh
+
+cat Dialogue/aemt01/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt01LemmaPOS.data | cat Dialogue/aemt02/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt02LemmaPOS.data |cat Dialogue/aemt03/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt03LemmaPOS.data | cat Dialogue/aemt04/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt04LemmaPOS.data | cat Dialogue/aemt05/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt05LemmaPOS.data | cat Dialogue/aemt06/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt06LemmaPOS.data | cat Dialogue/aemt07/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt07LemmaPOS.data | cat Dialogue/aemt08/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt08LemmaPOS.data |cat Dialogue/aemt09/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt09LemmaPOS.data | cat Dialogue/aemt10/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt10LemmaPOS.data | cat Dialogue/aemt11/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt11LemmaPOS.data | cat Dialogue/aemt12/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt12LemmaPOS.data |cat Dialogue/aemt13/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt13LemmaPOS.data | cat Dialogue/aemt14/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt14LemmaPOS.data |cat Dialogue/aemt15/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt15LemmaPOS.data | cat Dialogue/aemt16/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt16LemmaPOS.data
+
+
+########################################################################
+		AEMT Analysis - POS  ##############################
+
+perl ./preprocesstreetag-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisPOS/aemt**-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisPOS/aemt01-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisPOS/aemt02-POS | perl ./iyp-treat.pl -i Dialogue/aemt03/AnalysisPOS/aemt03-POS | perl ./iyp-treat.pl -i Dialogue/aemt04/AnalysisPOS/aemt04-POS | perl ./iyp-treat.pl -i Dialogue/aemt05/AnalysisPOS/aemt05-POS | perl ./iyp-treat.pl -i Dialogue/aemt06/AnalysisPOS/aemt06-POS | perl ./iyp-treat.pl -i Dialogue/aemt07/AnalysisPOS/aemt07-POS | perl ./iyp-treat.pl -i Dialogue/aemt08/AnalysisPOS/aemt08-POS | perl ./iyp-treat.pl -i Dialogue/aemt09/AnalysisPOS/aemt09-POS | perl ./iyp-treat.pl -i Dialogue/aemt10/AnalysisPOS/aemt10-POS | perl ./iyp-treat.pl -i Dialogue/aemt11/AnalysisPOS/aemt11-POS | perl ./iyp-treat.pl -i Dialogue/aemt12/AnalysisPOS/aemt12-POS | perl ./iyp-treat.pl -i Dialogue/aemt13/AnalysisPOS/aemt13-POS | perl ./iyp-treat.pl -i Dialogue/aemt14/AnalysisPOS/aemt14-POS | perl ./iyp-treat.pl -i Dialogue/aemt15/AnalysisPOS/aemt15-POS | perl ./iyp-treat.pl -i Dialogue/aemt16/AnalysisPOS/aemt16-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisPOS/aemt01-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisPOS/aemt02-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt03/AnalysisPOS/aemt03-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt04/AnalysisPOS/aemt04-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt05/AnalysisPOS/aemt05-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt06/AnalysisPOS/aemt06-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt07/AnalysisPOS/aemt07-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt08/AnalysisPOS/aemt08-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt09/AnalysisPOS/aemt09-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt10/AnalysisPOS/aemt10-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt11/AnalysisPOS/aemt11-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt12/AnalysisPOS/aemt12-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt13/AnalysisPOS/aemt13-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt14/AnalysisPOS/aemt14-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt15/AnalysisPOS/aemt15-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt16/AnalysisPOS/aemt16-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizePOS.sh
+
+cat Dialogue/aemt01/AnalysisPOS/*.parsed >  Dialogue/merged_aemt01POS.data | cat Dialogue/aemt02/AnalysisPOS/*.parsed >  Dialogue/merged_aemt02POS.data |cat Dialogue/aemt03/AnalysisPOS/*.parsed >  Dialogue/merged_aemt03POS.data | cat Dialogue/aemt04/AnalysisPOS/*.parsed >  Dialogue/merged_aemt04POS.data | cat Dialogue/aemt05/AnalysisPOS/*.parsed >  Dialogue/merged_aemt05POS.data | cat Dialogue/aemt06/AnalysisPOS/*.parsed >  Dialogue/merged_aemt06POS.data | cat Dialogue/aemt07/AnalysisPOS/*.parsed >  Dialogue/merged_aemt07POS.data | cat Dialogue/aemt08/AnalysisPOS/*.parsed >  Dialogue/merged_aemt08POS.data |cat Dialogue/aemt09/AnalysisPOS/*.parsed >  Dialogue/merged_aemt09POS.data | cat Dialogue/aemt10/AnalysisPOS/*.parsed >  Dialogue/merged_aemt10POS.data | cat Dialogue/aemt11/AnalysisPOS/*.parsed >  Dialogue/merged_aemt11POS.data | cat Dialogue/aemt12/AnalysisPOS/*.parsed >  Dialogue/merged_aemt12POS.data |cat Dialogue/aemt13/AnalysisPOS/*.parsed >  Dialogue/merged_aemt13POS.data | cat Dialogue/aemt14/AnalysisPOS/*.parsed >  Dialogue/merged_aemt14POS.data |cat Dialogue/aemt15/AnalysisPOS/*.parsed >  Dialogue/merged_aemt15POS.data | cat Dialogue/aemt16/AnalysisPOS/*.parsed >  Dialogue/merged_aemt16POS.data
+
+########################################################################
+                AEMT Analysis - Token+POS  ########################
+
+perl ./preprocesstreetag-Token-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisToken+POS/aemt**-token-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisToken+POS/aemt01-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisToken+POS/aemt02-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt03/AnalysisToken+POS/aemt03-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt04/AnalysisToken+POS/aemt04-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt05/AnalysisToken+POS/aemt05-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt06/AnalysisToken+POS/aemt06-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt07/AnalysisToken+POS/aemt07-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt08/AnalysisToken+POS/aemt08-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt09/AnalysisToken+POS/aemt09-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt10/AnalysisToken+POS/aemt10-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt11/AnalysisToken+POS/aemt11-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt12/AnalysisToken+POS/aemt12-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt13/AnalysisToken+POS/aemt13-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt14/AnalysisToken+POS/aemt14-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt15/AnalysisToken+POS/aemt15-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt16/AnalysisToken+POS/aemt16-token-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisToken+POS/aemt01-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisToken+POS/aemt02-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt03/AnalysisToken+POS/aemt03-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt04/AnalysisToken+POS/aemt04-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt05/AnalysisToken+POS/aemt05-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt06/AnalysisToken+POS/aemt06-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt07/AnalysisToken+POS/aemt07-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt08/AnalysisToken+POS/aemt08-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt09/AnalysisToken+POS/aemt09-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt10/AnalysisToken+POS/aemt10-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt11/AnalysisToken+POS/aemt11-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt12/AnalysisToken+POS/aemt12-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt13/AnalysisToken+POS/aemt13-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt14/AnalysisToken+POS/aemt14-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt15/AnalysisToken+POS/aemt15-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt16/AnalysisToken+POS/aemt16-token-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeTokenPOS.sh
+
+cat Dialogue/aemt01/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt01TokenPOS.data | cat Dialogue/aemt02/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt02TokenPOS.data |cat Dialogue/aemt03/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt03TokenPOS.data | cat Dialogue/aemt04/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt04TokenPOS.data | cat Dialogue/aemt05/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt05TokenPOS.data | cat Dialogue/aemt06/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt06TokenPOS.data | cat Dialogue/aemt07/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt07TokenPOS.data | cat Dialogue/aemt08/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt08TokenPOS.data |cat Dialogue/aemt09/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt09TokenPOS.data | cat Dialogue/aemt10/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt10TokenPOS.data | cat Dialogue/aemt11/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt11TokenPOS.data | cat Dialogue/aemt12/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt12TokenPOS.data |cat Dialogue/aemt13/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt13TokenPOS.data | cat Dialogue/aemt14/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt14TokenPOS.data |cat Dialogue/aemt15/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt15TokenPOS.data | cat Dialogue/aemt16/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt16TokenPOS.data
+
+
+###################################################################################################
+
+Then Post treatment --> perl ./AEMTPostProcessingLevel.pl ( Addition of the level)
+
+	Merger AEMT into one dataframe 
+
+PostProcessing of all files first
+cat Dialogue/*Level.data > mergedAEMT.data
+
+
+###--------> Remove Headers!!!!!
+
+sed -i 's/Speaker	GlobalIndex	StartTime	StopTime	Tokens	NGrams	SelfShared	OtherShared	N	OverlapCount	OverlapSeconds	AvgOverlap	DialID	Reality	Level/ /g' mergedAEMT.data
+###Does not work , do with Find and Replace 
+### Toremove empty lines
+sed -i '/^$/d' mergedAEMT.data
+
+#### Then in R -> createAEMTDialFull.R
+
+
+

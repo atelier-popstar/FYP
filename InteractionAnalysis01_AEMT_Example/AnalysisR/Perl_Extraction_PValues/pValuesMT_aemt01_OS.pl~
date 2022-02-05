@@ -1,0 +1,89 @@
+#!/usr/bin/perl
+# JR
+
+#Pragmas
+use utf8;
+use strict;
+use warnings;
+
+#
+#Format change for next processing
+open ( my $IN,  "TukeyTestLevel_q1ec1_OSN.txt");
+#open (OUT, ">ExtractionOfP-values/pValuesMT_q8nc8.txt");
+open ( my $OUT, ">PValue_SS_OS/pValuesMT_q1ec1_OSN.txt");
+
+my $expr1f = qr/Randomized\.IF\./;
+my $expr1g = qr/Randomized\.IG\./;
+my $expr2 = qr/ - Actual\.IF\./;
+my $expr4 = qr/ - Actual\.IG\./;
+my $expr3 = qr/ >= 0     /;
+my $expr5 = qr/\.N1/;
+my $expr6 = qr/\.N2/;
+my $value = qr/-?\d+\.\d+e*-*\+*\d*/;
+
+while (<$IN>) {
+    chomp;
+	#Creating header
+        #Isolation of the null hypothesis results/ Extracting the IG Pvalues
+	if (/Multiple.*/) {
+		print $OUT "OSPValueN1N2q1nc1";
+	
+    }   #Extracting the IG Pvalues
+    elsif (/$expr1g\Q1\E$expr5$expr4\Q1\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG1N1 $+";	
+    }
+    elsif (/$expr1g\Q2\E$expr5$expr4\Q2\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG2N1 $+";
+    } elsif (/$expr1g\Q3\E$expr5$expr4\Q3\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG3N1 $+";
+    } elsif (/$expr1g\Q4\E$expr5$expr4\Q4\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG4N1 $+";
+    } elsif (/$expr1g\Q5\E$expr5$expr4\Q5\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG5N1 $+";
+    }
+    
+    elsif (/$expr1g\Q2\E$expr6$expr4\Q2\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG2N2 $+";
+    } elsif (/$expr1g\Q3\E$expr6$expr4\Q3\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG3N2 $+";
+    } elsif (/$expr1g\Q4\E$expr6$expr4\Q4\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG4N2 $+";
+    } elsif (/$expr1g\Q5\E$expr6$expr4\Q5\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG5N2 $+";
+    } elsif (/$expr1g\Q1\E$expr6$expr4\Q1\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIG1N2 $+";	
+    }
+
+       #Extracting the IF Pvalues
+ elsif (/$expr1f\Q2\E$expr5$expr2\Q2\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF2N1 $+";
+    }
+    elsif (/$expr1f\Q3\E$expr5$expr2\Q3\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF3N1 $+";
+    } elsif (/$expr1f\Q4\E$expr5$expr2\Q4\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF4N1 $+";
+    } elsif (/$expr1f\Q5\E$expr5$expr2\Q5\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF5N1 $+";
+    }
+        elsif (/$expr1f\Q1\E$expr5$expr2\Q1\E$expr5$expr3$value  $value  $value\s*[<>]?($value)/) {
+      print $OUT "\nIF1N1 $+";
+    } 
+elsif (/$expr1f\Q1\E$expr6$expr2\Q1\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF1N2 $+";
+    } 
+       #Extracting the IF Pvalues
+    elsif (/$expr1f\Q2\E$expr6$expr2\Q2\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF2N2 $+";
+    } elsif (/$expr1f\Q3\E$expr6$expr2\Q3\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF3N2 $+";
+    } elsif (/$expr1f\Q4\E$expr6$expr2\Q4\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF4N2 $+";
+    } elsif (/$expr1f\Q5\E$expr6$expr2\Q5\E$expr6$expr3$value  $value  $value\s*[<>]?($value)/) {
+        print $OUT "\nIF5N2 $+";
+    }
+
+}
+
+close $IN;
+close $OUT;
+

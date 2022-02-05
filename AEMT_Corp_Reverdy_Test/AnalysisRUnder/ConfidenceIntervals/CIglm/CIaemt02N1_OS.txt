@@ -1,0 +1,21 @@
+                          2.5 %       97.5 %
+(Intercept)          -2.0241196 -1.474458544
+OSfosRandomized.IF.1 -0.6797775 -0.094455743
+OSfosActual.IG.1     -0.6041097  0.040309523
+OSfosRandomized.IG.1 -0.8162874 -0.254175421
+OSfosActual.IF.2     -0.4079208  0.382977842
+OSfosRandomized.IF.2 -0.6913831 -0.103666224
+OSfosActual.IG.2     -0.4661730  0.175842312
+OSfosRandomized.IG.2 -0.8307914 -0.267566090
+OSfosActual.IF.3     -0.8613456  0.001347619
+OSfosRandomized.IF.3 -1.1591432 -0.554613084
+OSfosActual.IG.3     -0.8605224 -0.189733663
+OSfosRandomized.IG.3 -1.4283781 -0.856312661
+OSfosActual.IF.4      0.5232236  1.228327957
+OSfosRandomized.IF.4  0.5043293  1.072125499
+OSfosActual.IG.4      0.3844134  0.990760783
+OSfosRandomized.IG.4  0.2505445  0.806641030
+OSfosActual.IF.5     -0.7690795  0.077151797
+OSfosRandomized.IF.5 -1.2883723 -0.677795969
+OSfosActual.IG.5     -0.8910959 -0.217656805
+OSfosRandomized.IG.5 -1.3610936 -0.790296468

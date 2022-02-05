@@ -1,0 +1,11 @@
+aemt01_SSPValue
+aemt01 IF 1 1.0000
+aemt01 IG 1 1.0000
+aemt01 IF 2 1.0000
+aemt01 IG 2 1.0000
+aemt01 IF 3 1.0000
+aemt01 IG 3 1.0000
+aemt01 IF 4 1.0000
+aemt01 IG 4 1.0000
+aemt01 IF 5 1.0000
+aemt01 IG 5 1.0000

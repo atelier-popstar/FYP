@@ -1,0 +1,11 @@
+aemt02N2_SSN2PValue
+aemt02 IF 1 1.0000
+aemt02 IG 1 1.0000
+aemt02 IF 2 1.0000
+aemt02 IG 2 1.0000
+aemt02 IF 3 1.0000
+aemt02 IG 3 1.0000
+aemt02 IF 4 1.0000
+aemt02 IG 4 1.0000
+aemt02 IF 5 1.0000
+aemt02 IG 5 1.0000

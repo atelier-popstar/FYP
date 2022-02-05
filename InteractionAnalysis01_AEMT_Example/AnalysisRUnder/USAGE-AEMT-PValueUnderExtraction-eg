@@ -1,0 +1,44 @@
+###JR June 3 2019 ### pValuesMTaemt01_OS.pl
+###Create the first 10 files
+### place the 10 to 16 in the folder perlScript
+cd /Desktop/AEMT/InteractionAnalysis_AEMT/AnalysisRUnder
+
+## Rename inside files
+sed -i 's/Levelaemt/LevelUnderaemt/g' *
+## Rename files name
+#rename  's/Levelaemt/LevelUnderaemt/' *
+
+## Create SS / N1 / N2 extraction Files
+##N1OS
+sed -i 's/>PValues/>PValuesN1/g' *
+sed -i 's/_OS/N1_OSN1/g' *
+rename  's/_OS/_OSN1/' *
+
+sed -i 's/>PValuesN1/>PValuesN2/g' *
+sed -i 's/N1_OSN1/N2_OSN2/g' *
+rename  's/_OSN1/_OSN2/' *
+
+sed -i 's/OS/SS/g' *
+rename  's/OS/SS/' *
+
+sh executionPerlScripts.sh
+
+cat pValuesaemt**_OS.txt > pValuesaemtU_OS.txt
+cat pValuesaemt**_SS.txt > pValuesaemtU_SS.txt
+
+cat pValuesaemt**N1_OS.txt > pValuesaemtU_OSN1.txt
+cat pValuesaemt**N1_SS.txt > pValuesaemtU_SSN1.txt
+
+cat pValuesaemt**N2_OS.txt > pValuesaemtU_OSN2.txt
+cat pValuesaemt**N2_SS.txt > pValuesaemtU_SSN2.txt
+
+
+##### For UnderChance cat
+## Place in correct folder
+cat pValuesaemt**_**.txt > pValuesaemtAllOSUnder.txt
+cat pValuesaemt**_**.txt > pValuesaemtAllSSUnder.txt
+
+sed -i 's/N1_OSN1.txt/N1_OS.txt/g' *
+sed -i 's/N2_OSN2.txt/N2_OS.txt/g' *
+sed -i 's/N1_SSN1.txt/N1_SS.txt/g' *
+sed -i 's/N2_SSN2.txt/N2_SS.txt/g' *

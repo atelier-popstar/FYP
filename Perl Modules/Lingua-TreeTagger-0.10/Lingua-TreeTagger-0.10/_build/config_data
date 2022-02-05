@@ -1,0 +1,7 @@
+do{ my $x = {
+       'test_language' => 'english',
+       'tokenizer_prog_path' => 'C:\\TreeTagger\\cmd\\tokenize.pl',
+       'treetagger_lib_path' => 'C:\\TreeTagger\\lib',
+       'treetagger_prog_path' => 'C:\\TreeTagger\\bin\\tree-tagger.EXE'
+     };
+$x; }

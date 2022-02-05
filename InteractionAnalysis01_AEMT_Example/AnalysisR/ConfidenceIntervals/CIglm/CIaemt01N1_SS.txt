@@ -1,0 +1,21 @@
+                           2.5 %     97.5 %
+(Intercept)          -2.44797177 -1.7430198
+SSfosRandomized.IF.1 -0.64761026  0.1003173
+SSfosActual.IG.1      0.19317733  1.0045926
+SSfosRandomized.IG.1 -0.13452033  0.5850957
+SSfosActual.IF.2     -0.38192594  0.6049774
+SSfosRandomized.IF.2 -0.53694133  0.2090364
+SSfosActual.IG.2      0.17941738  0.9969501
+SSfosRandomized.IG.2 -0.05924227  0.6603548
+SSfosActual.IF.3     -0.45922470  0.5394019
+SSfosRandomized.IF.3 -0.58820882  0.1591720
+SSfosActual.IG.3      0.05754211  0.8832279
+SSfosRandomized.IG.3 -0.40356255  0.3202546
+SSfosActual.IF.4      0.65812225  1.5266669
+SSfosRandomized.IF.4  0.59851595  1.3227145
+SSfosActual.IG.4      1.33340024  2.1094386
+SSfosRandomized.IG.4  1.22042465  1.9330511
+SSfosActual.IF.5     -0.45922470  0.5394019
+SSfosRandomized.IF.5 -0.41382997  0.3282154
+SSfosActual.IG.5      0.05754211  0.8832279
+SSfosRandomized.IG.5 -0.25548319  0.4663271

@@ -1,0 +1,167 @@
+Usage AEMT Corpus Example
+
+### Step 1: Corpus cleaning
+### Creation of tab and without tab corpus versions
+
+## Tip on using sed ###
+cd /path/to/your/folder
+sed -i 's/foo/bar/g' *
+##Occurrences of "foo" will be replaced with "bar".
+## create g and f with tabs
+sed -i 's/g   /g\t/g' *
+sed -i 's/f   /f\t/g' *
+## Remove empty lines
+sed -i '/^$/d' *
+## Remove punctuation
+sed -i 's/?/ /g' *
+sed -i 's/-/ /g' *
+
+## Remove Tabulation
+sed -i 's/g\t/g /g' *
+sed -i 's/f\t/f /g' *
+#####################
+Create the files and subfiles -> exemple:
+
+cd /home/user/Desktop/AEMT/InteractionAnalysis_AEMT/Dialogue
+mkdir -p aemt01/AnalysisLemma aemt01/AnalysisLemma+POS aemt01/AnalysisPOS aemt01/AnalysisToken aemt01/AnalysisToken+POS
+
+AEMT Analysis - Exact Token #######################
+
+Place in /CorpusTab
+perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt01.txt | perl ./iyp-treat.pl -i Corpus/CorpusTab/aemt02.txt
+
+###############################
+
+# MOVE ALL Files in there correct folder 
+
+mv Corpus/CorpusTab/aemt01.txt.iy.p0.c1 Dialogue/aemt01/AnalysisToken | mv Corpus/CorpusTab/aemt02.txt.iy.p0.c1 Dialogue/aemt02/AnalysisToken
+
+###############################
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisToken/aemt01.txt.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisToken/aemt02.txt.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeToken.sh
+
+#### Concatenation of the results
+
+cat Dialogue/aemt01/AnalysisToken/*.parsed >  Dialogue/merged_aemt01Token.data | cat Dialogue/aemt02/AnalysisToken/*.parsed >  Dialogue/merged_aemt02Token.data
+
+
+################################################################
+	     AEMT Analysis - Lemma  ############################
+
+perl ./preprocesstreetag-lemma-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisLemma/aemt**-lemma
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisLemma/aemt01-lemma | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisLemma/aemt02-lemma
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisLemma/aemt01-lemma.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisLemma/aemt02-lemma.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeLemma.sh
+
+cat Dialogue/aemt01/AnalysisLemma/*.parsed >  Dialogue/merged_aemt01Lemma.data | cat Dialogue/aemt02/AnalysisLemma/*.parsed >  Dialogue/merged_aemt02Lemma.data
+
+###################################################################
+		AEMT Analysis - Lemma+POS  ########################
+
+perl ./preprocesstreetag-lemma-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisLemma+POS/aemt**-lemma-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisLemma+POS/aemt01-lemma-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisLemma+POS/aemt02-lemma-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisLemma+POS/aemt01-lemma-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisLemma+POS/aemt02-lemma-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeLemmaPOS.sh
+
+cat Dialogue/aemt01/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt01LemmaPOS.data | cat Dialogue/aemt02/AnalysisLemma+POS/*.parsed >  Dialogue/merged_aemt02LemmaPOS.data
+
+
+########################################################################
+		AEMT Analysis - POS  ##############################
+
+perl ./preprocesstreetag-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisPOS/aemt**-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisPOS/aemt01-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisPOS/aemt02-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisPOS/aemt01-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisPOS/aemt02-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizePOS.sh
+
+cat Dialogue/aemt01/AnalysisPOS/*.parsed >  Dialogue/merged_aemt01POS.data | cat Dialogue/aemt02/AnalysisPOS/*.parsed >  Dialogue/merged_aemt02POS.data
+
+########################################################################
+                AEMT Analysis - Token+POS  ########################
+
+perl ./preprocesstreetag-Token-POS-AEMT.pl
+
+## Remove first line
+
+sed -i '/^$/d' Dialogue/aemt**/AnalysisToken+POS/aemt**-token-POS
+
+###############################################################
+
+perl ./iyp-treat.pl -i Dialogue/aemt01/AnalysisToken+POS/aemt01-token-POS | perl ./iyp-treat.pl -i Dialogue/aemt02/AnalysisToken+POS/aemt02-token-POS
+
+perl ./dialog-treat-time.pl -i Dialogue/aemt01/AnalysisToken+POS/aemt01-token-POS.iy.p0.c1 | perl ./dialog-treat-time.pl -i Dialogue/aemt02/AnalysisToken+POS/aemt02-token-POS.iy.p0.c1
+
+########### Randomize 10 times
+---> does not accept the pipeline !!!
+
+sh ./randomizeTokenPOS.sh
+
+cat Dialogue/aemt01/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt01TokenPOS.data | cat Dialogue/aemt02/AnalysisToken+POS/*.parsed >  Dialogue/merged_aemt02TokenPOS.data
+
+
+###################################################################################################
+
+Then Post treatment --> 
+
+perl ./AEMTPostProcessingLevel.pl ( Addition of the level)
+
+	Merger AEMT into one dataframe 
+
+PostProcessing of all files first
+cat Dialogue/*Level.data > mergedAEMT.data
+
+
+###--------> Remove Headers!!!
+ but the first one, with a simple find and replace with empty lines
+
+### To remove empty lines
+sed -i '/^$/d' mergedAEMT.data
+
+## Paste at the top
+Speaker	GlobalIndex	StartTime	StopTime	Tokens	NGrams	SelfShared	OtherShared	N	OverlapCount	OverlapSeconds	AvgOverlap	DialID	Reality	Level
+
+#### Then in R -> createAEMTDialFull.R
+
+
+

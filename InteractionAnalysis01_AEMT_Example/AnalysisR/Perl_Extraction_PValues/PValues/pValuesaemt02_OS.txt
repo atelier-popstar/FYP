@@ -1,0 +1,11 @@
+aemt02_OSPValue
+aemt02 IG 1 0.01
+aemt02 IF 1 0.01
+aemt02 IG 2 0.01
+aemt02 IF 2 0.01
+aemt02 IG 3 0.01
+aemt02 IF 3 0.01
+aemt02 IG 4 0.01
+aemt02 IF 4 0.2039
+aemt02 IG 5 0.01
+aemt02 IF 5 0.01
