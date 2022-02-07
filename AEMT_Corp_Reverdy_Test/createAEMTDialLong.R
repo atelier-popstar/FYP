@@ -18,9 +18,6 @@ AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'g'] <- 'IG'
 AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'f'] <- 'IF'
 AEMTDialFULL$Speakers <- factor(AEMTDialFULL$Speakers)
 
-#Reformatting Dial Data from Wide to Long
-AEMTDialFULLLong <- reshape(data=AEMTDialFULL, )
-
 
 connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
 write.table(AEMTDialFULL, connection, sep="\t")
