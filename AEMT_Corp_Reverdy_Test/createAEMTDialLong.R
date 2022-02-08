@@ -3,7 +3,7 @@
 #Selecting one dialogue + Supression of unsuable column 
 
 mergedAEMT<- read.csv("mergedAEMT.csv",header=TRUE,sep="\t",fileEncoding="UTF-16LE")
-AEMTDialFULL<- mergedAEMT[-c(2,3,4,10,11,12)]
+AEMTDialFULL<- mergedAEMT[-c(3,4,10,11,12)]
 
 names(AEMTDialFULL)[names(AEMTDialFULL) == 'Speaker'] <- 'Speakers'
 
@@ -17,6 +17,13 @@ levels(AEMTDialFULL$Speakers) <- c(levels(AEMTDialFULL$Speakers), "IF")
 AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'g'] <- 'IG'
 AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'f'] <- 'IF'
 AEMTDialFULL$Speakers <- factor(AEMTDialFULL$Speakers)
+
+AEMTDialLONG <- reshape(data=AEMTDialFULL, 
+                        idvar="GlobalIndex", 
+                        varying=c("Speakers","Tokens","NGrams","SS","OS","N","DialID","Reality","Level"),
+                        v.names=c("Value"),
+                        times=c("Speakers","Tokens","NGrams","SS","OS","N","DialID","Reality","Level"),
+                        direction="long")
 
 
 connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
