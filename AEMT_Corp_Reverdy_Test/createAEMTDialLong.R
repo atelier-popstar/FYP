@@ -5,7 +5,8 @@
 mergedAEMT<- read.csv("mergedAEMT.csv",header=TRUE,sep="\t",fileEncoding="UTF-16LE")
 AEMTDialFULL<- mergedAEMT[-c(3,4,10,11,12)]
 
-names(AEMTDialFULL)[names(AEMTDialFULL) == 'Speaker'] <- 'Speakers'
+names(AEMTDialFULL)[names(AEMTDialFULL) == 'GlobalIndex'] <- 'Speakers'
+names(AEMTDialFULL)[names(AEMTDialFULL) == 'Speaker'] <- 'GlobalIndex'
 
 names(AEMTDialFULL)[names(AEMTDialFULL) == 'OtherShared'] <- 'OS'
 names(AEMTDialFULL)[names(AEMTDialFULL) == 'SelfShared'] <- 'SS'
@@ -25,7 +26,7 @@ AEMTDialLONG <- reshape(data=AEMTDialFULL,
                         times=c("Speakers","Tokens","NGrams","SS","OS","N","DialID","Reality","Level"),
                         direction="long")
 
-
 connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
 write.table(AEMTDialFULL, connection, sep="\t")
+close(connection)
 
