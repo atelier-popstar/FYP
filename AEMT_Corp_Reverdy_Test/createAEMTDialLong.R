@@ -2,13 +2,12 @@
 # load mergedAEMT ### DO NOT FORGET TO REMOVE THE LINES THAT ARE SAME AS THE HEADER
 #Selecting one dialogue + Supression of unsuable column 
 #library(dplyr)
+#,fileEncoding="UTF-16LE"
 
-mergedAEMT<- read.csv("mergedAEMT.csv",header=TRUE,sep="\t",fileEncoding="UTF-16LE")
-mergedAEMT[-seq(1, nrow(mergedAEMT), by = 966)]
-AEMTDialFULL<- mergedAEMT[-c(3,4,10,11,12)]
+mergedAEMT<- read.csv("mergedAEMTCLEAN.csv",header=TRUE,sep="\t")
+AEMTDialFULL<- mergedAEMT[-c(2,3,4,10,11,12)]
 
-names(AEMTDialFULL)[names(AEMTDialFULL) == 'GlobalIndex'] <- 'Speakers'
-names(AEMTDialFULL)[names(AEMTDialFULL) == 'Speaker'] <- 'GlobalIndex'
+names(AEMTDialFULL)[names(AEMTDialFULL) == 'Speaker'] <- 'Speakers'
 
 names(AEMTDialFULL)[names(AEMTDialFULL) == 'OtherShared'] <- 'OS'
 names(AEMTDialFULL)[names(AEMTDialFULL) == 'SelfShared'] <- 'SS'
@@ -22,7 +21,7 @@ AEMTDialFULL$Speakers[AEMTDialFULL$Speakers == 'f'] <- 'IF'
 AEMTDialFULL$Speakers <- factor(AEMTDialFULL$Speakers)
 
 AEMTDialLONG <- reshape(data=AEMTDialFULL, 
-                        idvar="GlobalIndex", 
+                        idvar="AEMTDialFULL[row.names]", 
                         varying=c("Speakers","Tokens","NGrams","SS","OS","N","DialID","Reality","Level"),
                         v.names=c("Value"),
                         times=c("Speakers","Tokens","NGrams","SS","OS","N","DialID","Reality","Level"),
@@ -33,7 +32,7 @@ AEMTDialLONG <- reshape(data=AEMTDialFULL,
                      
 #                     )
 
-connection <- file("C:/Users/ttye7/Desktop/4th Year/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
+connection <- file("C:/Users/tanya/OneDrive/Documents/Tom's Stuff/FYP/AEMT_Corp_Reverdy_Test/AnalysisR/AEMTDialFULL/AEMTDialFULL.DATA",open="at")
 write.table(AEMTDialLONG, connection, sep="\t")
 close(connection)
 
