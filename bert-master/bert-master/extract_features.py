@@ -38,7 +38,7 @@ flags.DEFINE_string("output_file", None, "")
 flags.DEFINE_string("layers", "-1,-2,-3,-4", "")
 
 flags.DEFINE_string(
-    "bert_config_file", None,
+    "bert_config_file", "C:/Users/ttye7/Desktop/4th Year/FYP Auxiliary/uncased_L-8_H-512_A-8/bert_config.json",
     "The config json file corresponding to the pre-trained BERT model. "
     "This specifies the model architecture.")
 
@@ -49,10 +49,10 @@ flags.DEFINE_integer(
     "than this will be padded.")
 
 flags.DEFINE_string(
-    "init_checkpoint", None,
+    "init_checkpoint", "C:/Users/ttye7/Desktop/4th Year/FYP Auxiliary/uncased_L-8_H-512_A-8/bert_model.ckpt",
     "Initial checkpoint (usually from a pre-trained BERT model).")
 
-flags.DEFINE_string("vocab_file", None,
+flags.DEFINE_string("vocab_file", "C:/Users/ttye7/Desktop/4th Year/FYP Auxiliary/uncased_L-8_H-512_A-8/vocab.txt",
                     "The vocabulary file that the BERT model was trained on.")
 
 flags.DEFINE_bool(
