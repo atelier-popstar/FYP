@@ -8,30 +8,10 @@ Detailed log follows:
 
 ================================================================================
 --------------------------------------------------------------------------------
-Processing file 'extract_features.py'
- outputting to 'extract_features_v2.py'
+Processing file 'tokenization.py'
+ outputting to 'tokenization_v2.py'
 --------------------------------------------------------------------------------
 
-171:12: INFO: Renamed 'tf.trainable_variables' to 'tf.compat.v1.trainable_variables'
-179:8: INFO: Renamed 'tf.train.init_from_checkpoint' to 'tf.compat.v1.train.init_from_checkpoint'
-180:15: INFO: Renamed 'tf.train.Scaffold' to 'tf.compat.v1.train.Scaffold'
-184:6: INFO: Renamed 'tf.train.init_from_checkpoint' to 'tf.compat.v1.train.init_from_checkpoint'
-186:4: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-191:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-203:18: INFO: Renamed 'tf.contrib.tpu.TPUEstimatorSpec' to 'tf.compat.v1.estimator.tpu.TPUEstimatorSpec'
-283:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-284:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-285:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-287:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-288:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-289:6: INFO: Renamed 'tf.logging.info' to 'tf.compat.v1.logging.info'
-323:7: INFO: Renamed 'tf.gfile.GFile' to 'tf.io.gfile.GFile'
-344:2: INFO: Renamed 'tf.logging.set_verbosity' to 'tf.compat.v1.logging.set_verbosity'
-344:27: INFO: Renamed 'tf.logging.INFO' to 'tf.compat.v1.logging.INFO'
-353:16: INFO: Renamed 'tf.contrib.tpu.InputPipelineConfig' to 'tf.compat.v1.estimator.tpu.InputPipelineConfig'
-354:15: INFO: Renamed 'tf.contrib.tpu.RunConfig' to 'tf.compat.v1.estimator.tpu.RunConfig'
-356:17: INFO: Renamed 'tf.contrib.tpu.TPUConfig' to 'tf.compat.v1.estimator.tpu.TPUConfig'
-378:14: INFO: Renamed 'tf.contrib.tpu.TPUEstimator' to 'tf.compat.v1.estimator.tpu.TPUEstimator'
-387:33: INFO: Renamed 'tf.gfile.Open' to 'tf.io.gfile.GFile'
+125:7: INFO: Renamed 'tf.gfile.GFile' to 'tf.io.gfile.GFile'
 --------------------------------------------------------------------------------
 

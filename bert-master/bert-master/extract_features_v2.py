@@ -23,8 +23,8 @@ import collections
 import json
 import re
 
-import modeling
-import tokenization
+import modeling_v2
+import tokenization_v2
 import tensorflow as tf
 
 flags = tf.compat.v1.flags
@@ -157,7 +157,7 @@ def model_fn_builder(bert_config, init_checkpoint, layer_indexes, use_tpu,
     input_mask = features["input_mask"]
     input_type_ids = features["input_type_ids"]
 
-    model = modeling.BertModel(
+    model = modeling_v2.BertModel(
         config=bert_config,
         is_training=False,
         input_ids=input_ids,
@@ -171,7 +171,7 @@ def model_fn_builder(bert_config, init_checkpoint, layer_indexes, use_tpu,
     tvars = tf.compat.v1.trainable_variables()
     scaffold_fn = None
     (assignment_map,
-     initialized_variable_names) = modeling.get_assignment_map_from_checkpoint(
+     initialized_variable_names) = modeling_v2.get_assignment_map_from_checkpoint(
          tvars, init_checkpoint)
     if use_tpu:
 
@@ -283,7 +283,7 @@ def convert_examples_to_features(examples, seq_length, tokenizer):
       tf.compat.v1.logging.info("*** Example ***")
       tf.compat.v1.logging.info("unique_id: %s" % (example.unique_id))
       tf.compat.v1.logging.info("tokens: %s" % " ".join(
-          [tokenization.printable_text(x) for x in tokens]))
+          [tokenization_v2.printable_text(x) for x in tokens]))
       tf.compat.v1.logging.info("input_ids: %s" % " ".join([str(x) for x in input_ids]))
       tf.compat.v1.logging.info("input_mask: %s" % " ".join([str(x) for x in input_mask]))
       tf.compat.v1.logging.info(
@@ -322,7 +322,7 @@ def read_examples(input_file):
   unique_id = 0
   with tf.io.gfile.GFile(input_file, "r") as reader:
     while True:
-      line = tokenization.convert_to_unicode(reader.readline())
+      line = tokenization_v2.convert_to_unicode(reader.readline())
       if not line:
         break
       line = line.strip()
@@ -345,9 +345,9 @@ def main(_):
 
   layer_indexes = [int(x) for x in FLAGS.layers.split(",")]
 
-  bert_config = modeling.BertConfig.from_json_file(FLAGS.bert_config_file)
+  bert_config = modeling_v2.BertConfig.from_json_file(FLAGS.bert_config_file)
 
-  tokenizer = tokenization.FullTokenizer(
+  tokenizer = tokenization_v2.FullTokenizer(
       vocab_file=FLAGS.vocab_file, do_lower_case=FLAGS.do_lower_case)
 
   is_per_host = tf.compat.v1.estimator.tpu.InputPipelineConfig.PER_HOST_V2
