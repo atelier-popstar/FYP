@@ -31,6 +31,24 @@ for idx, sentence in enumerate(sentences):
 
         if sentences[tmpidx].speaker == tmpspkr:
             sentence.SS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+            tmpidx = tmpidx - 1
+            if tmpidx < 0:
+                while sentences[tmpidx].speaker == tmpspkr & tmpidx != 0:
+                    tmpidx = tmpidx - 1
+                
+                if sentences[tmpidx].speaker != tmpspkr:
+                    sentence.OS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+
+        elif sentences[tmpidx].speaker != tmpspkr:
+            sentence.OS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+            tmpidx = tmpidx - 1
+            if tmpidx < 0:
+                while sentences[tmpidx].speaker != tmpspkr & tmpidx != 0:
+                    tmpidx = tmpidx - 1
+                
+                if sentences[tmpidx].speaker == tmpspkr:
+                    sentence.SS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+        
         #while (sentences[tmpidx].speaker != tmpspkr & tmpidx != 0):
 
     #print(sentence.speaker)
