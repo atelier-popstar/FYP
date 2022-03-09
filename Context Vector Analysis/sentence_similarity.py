@@ -1,8 +1,11 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
+college = "C:/Users/tyet/Documents"
+home = "C:/Users/ttye7/Desktop/4th Year"
+
 model = SentenceTransformer('bert-base-nli-mean-tokens')
-input_file = "C:/Users/ttye7/Desktop/4th Year/FYP Auxiliary/transcripts/Transcripts_Clean/q1ec1.txt"
+input_file = college + "/FYP Auxiliary/transcripts/Transcripts_Clean/q1ec1.txt"
 
 class Sentence:
     def __init__(self, index, speaker, sentence):
