@@ -28,43 +28,49 @@ with open(input_file) as fh:
 
 for idx, sentence in enumerate(sentences):
     sentence.vector = model.encode(sentence.sentence)
+    #print(sentence.vector.shape)
     if idx != 0:
         tmpspkr = sentence.speaker
-        print("\n" + tmpspkr)
+        #print("\n" + tmpspkr)
         tmpidx = idx - 1
 
         if sentences[tmpidx].speaker == tmpspkr:
-            print("\n Check 1")
-            print(sentence.vector, sentences[tmpidx].vector)
-            sentence.SS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
+            #print("\n Check 1")
+            #print(sentence.vector, sentences[tmpidx].vector)
+            sentence.SS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
             tmpidx = tmpidx - 1
             if tmpidx > 0:
                 while sentences[tmpidx].speaker == tmpspkr and tmpidx > 0:
                     tmpidx = tmpidx - 1
-                    print("\n Check 2 " + str(tmpidx))
+                    #print("\n Check 2 " + str(tmpidx))
                 
                 if sentences[tmpidx].speaker != tmpspkr:
-                    sentence.OS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
-                    print("\n Check 3 ")
+                    sentence.OS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
+                    #print("\n Check 3 ")
 
         elif sentences[tmpidx].speaker != tmpspkr:
-            print("\n Check 1")
-            print(sentence.vector, sentences[tmpidx].vector)
-            sentence.OS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
+            #print("\n Check 1")
+            #print(sentence.vector, sentences[tmpidx].vector)
+            sentence.OS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
             tmpidx = tmpidx - 1
             if tmpidx > 0:
                 while sentences[tmpidx].speaker != tmpspkr and tmpidx > 0:
                     tmpidx = tmpidx - 1
-                    print("\n Check 2 " + str(tmpidx))
+                    #print("\n Check 2 " + str(tmpidx))
                 
                 if sentences[tmpidx].speaker == tmpspkr:
-                    sentence.SS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
-                    print("\n Check 3 ")
-        
-        #while (sentences[tmpidx].speaker != tmpspkr & tmpidx != 0):
+                    sentence.SS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
+                    #print("\n Check 3 ")
 
     #print(sentence.speaker)
     #print(sentence.sentence)
 
+for idx, sentence in enumerate(sentences):
+
+    print("\nSentence: " + str(idx))
+    print("\nSpeaker: " + sentence.speaker)
+    #print("\nEncoding: " + sentence.sentence)
+    print("\nOS: " + str(sentence.OS))
+    print("\nSS: " + str(sentence.SS))
 
 
