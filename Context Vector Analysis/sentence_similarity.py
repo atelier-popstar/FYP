@@ -5,7 +5,7 @@ college = "C:/Users/tyet/Documents"
 home = "C:/Users/ttye7/Desktop/4th Year"
 
 model = SentenceTransformer('bert-base-nli-mean-tokens')
-input_file = college + "/FYP Auxiliary/transcripts/Transcripts_Clean/q1ec1.txt"
+input_file = home + "/FYP Auxiliary/transcripts/Transcripts_Clean/q1ec1.txt"
 
 class Sentence:
     def __init__(self, index, speaker, sentence):
@@ -30,27 +30,36 @@ for idx, sentence in enumerate(sentences):
     sentence.vector = model.encode(sentence.sentence)
     if idx != 0:
         tmpspkr = sentence.speaker
+        print("\n" + tmpspkr)
         tmpidx = idx - 1
 
         if sentences[tmpidx].speaker == tmpspkr:
-            sentence.SS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+            print("\n Check 1")
+            print(sentence.vector, sentences[tmpidx].vector)
+            sentence.SS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
             tmpidx = tmpidx - 1
-            if tmpidx < 0:
-                while sentences[tmpidx].speaker == tmpspkr & tmpidx != 0:
+            if tmpidx > 0:
+                while sentences[tmpidx].speaker == tmpspkr and tmpidx > 0:
                     tmpidx = tmpidx - 1
+                    print("\n Check 2 " + str(tmpidx))
                 
                 if sentences[tmpidx].speaker != tmpspkr:
-                    sentence.OS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+                    sentence.OS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
+                    print("\n Check 3 ")
 
         elif sentences[tmpidx].speaker != tmpspkr:
-            sentence.OS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+            print("\n Check 1")
+            print(sentence.vector, sentences[tmpidx].vector)
+            sentence.OS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
             tmpidx = tmpidx - 1
-            if tmpidx < 0:
-                while sentences[tmpidx].speaker != tmpspkr & tmpidx != 0:
+            if tmpidx > 0:
+                while sentences[tmpidx].speaker != tmpspkr and tmpidx > 0:
                     tmpidx = tmpidx - 1
+                    print("\n Check 2 " + str(tmpidx))
                 
                 if sentences[tmpidx].speaker == tmpspkr:
-                    sentence.SS = cosine_similarity(sentence.vector, sentences[tmpidx].vector)
+                    sentence.SS = cosine_similarity(sentence.vector.reshape(-1, 1), sentences[tmpidx].vector.reshape(-1, 1))
+                    print("\n Check 3 ")
         
         #while (sentences[tmpidx].speaker != tmpspkr & tmpidx != 0):
 
