@@ -1,4 +1,5 @@
 import os
+import csv
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -7,6 +8,7 @@ home = "C:/Users/ttye7/Desktop/4th Year"
 
 model = SentenceTransformer('bert-base-nli-mean-tokens')
 inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
+outputpath = home + "/FYP/Context Vector Analysis"
 
 class Sentence:
     def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar):
@@ -73,7 +75,7 @@ for transcript_no, file in enumerate(os.listdir()):
                 #print(sentence.vector, sentences[tmpidx].vector)
                 sentence.SS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
                 tmpidx = tmpidx - 1
-                if tmpidx > 0:
+                if tmpidx >= 0:
                     while sentences[tmpidx].speaker == tmpspkr and tmpidx > 0:
                         tmpidx = tmpidx - 1
                         #print("\n Check 2 " + str(tmpidx))
@@ -87,7 +89,7 @@ for transcript_no, file in enumerate(os.listdir()):
                 #print(sentence.vector, sentences[tmpidx].vector)
                 sentence.OS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
                 tmpidx = tmpidx - 1
-                if tmpidx > 0:
+                if tmpidx >= 0:
                     while sentences[tmpidx].speaker != tmpspkr and tmpidx > 0:
                         tmpidx = tmpidx - 1
                         #print("\n Check 2 " + str(tmpidx))
@@ -98,5 +100,11 @@ for transcript_no, file in enumerate(os.listdir()):
 
     sentences_master.extend(sentences)
 
-for sentence in sentences_master:
-    print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + sentence.OS + " SS: " + sentence.SS)
+#for sentence in sentences_master:
+    #print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + str(sentence.OS) + " SS: " + str(sentence.SS))
+
+with open(outputpath + '/results.csv', 'w',) as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'OS', 'SS'])
+    for sentence in sentences_master:
+        writer.writerow([sentence.global_index, sentence.local_index, sentence.speaker, sentence.familiar, sentence.eyecon, sentence.OS, sentence.SS])
