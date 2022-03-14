@@ -7,8 +7,8 @@ college = "C:/Users/tyet/Documents"
 home = "C:/Users/ttye7/Desktop/4th Year"
 
 model = SentenceTransformer('bert-base-nli-mean-tokens')
-inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
-outputpath = home + "/FYP/Context Vector Analysis"
+inputpath = college + "/FYP Auxiliary/transcripts/Transcripts_Clean"
+outputpath = college + "/FYP/Context Vector Analysis"
 
 class Sentence:
     def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar):
@@ -18,8 +18,8 @@ class Sentence:
         self.sentence = sentence   
         self.eyecon = eyecon
         self.familiar = familiar
-        self.OS = 0
-        self.SS = 0
+        self.OS = 'N/A'
+        self.SS = 'N/A'
 sentences_master = []
 filename = ""
 
@@ -27,7 +27,7 @@ os.chdir(inputpath)
 
 for transcript_no, file in enumerate(os.listdir()):
 
-    i = 0
+    local_index = 0
     sentences = []
     filename = file
     eyecon = "false"
@@ -56,8 +56,8 @@ for transcript_no, file in enumerate(os.listdir()):
 
             speaker, sentence = line.strip().split(None, 1)
 
-            sentences.append(Sentence(transcript_no, i, speaker, sentence.strip(), eyecon, familiar))
-            i = i + 1
+            sentences.append(Sentence(transcript_no, local_index, speaker, sentence.strip(), eyecon, familiar))
+            local_index = local_index + 1
 
         fh.close()
 
@@ -103,7 +103,7 @@ for transcript_no, file in enumerate(os.listdir()):
 #for sentence in sentences_master:
     #print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + str(sentence.OS) + " SS: " + str(sentence.SS))
 
-with open(outputpath + '/results.csv', 'w',) as csvfile:
+with open(outputpath + '/results.csv', 'w', newline='',) as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'OS', 'SS'])
     for sentence in sentences_master:
