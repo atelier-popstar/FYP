@@ -3,13 +3,18 @@ import csv
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
+##variables for switching root in i/o paths
 college = "C:/Users/tyet/Documents"
 home = "C:/Users/ttye7/Desktop/4th Year"
 
+#instantiate transformer model
 model = SentenceTransformer('bert-base-nli-mean-tokens')
-inputpath = college + "/FYP Auxiliary/transcripts/Transcripts_Clean"
-outputpath = college + "/FYP/Context Vector Analysis"
 
+#dialogue input and results output
+inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
+outputpath = home + "/FYP/Context Vector Analysis"
+
+#sentence object to store turn information
 class Sentence:
     def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar):
         self.local_index = local_index
@@ -20,22 +25,30 @@ class Sentence:
         self.familiar = familiar
         self.OS = 'N/A'
         self.SS = 'N/A'
+
+#instantiate master turn array and dialogue filename
 sentences_master = []
 filename = ""
 
+#change active directory to use os.listdir()
 os.chdir(inputpath)
 
+#iterate through all dialogues in input folder
 for transcript_no, file in enumerate(os.listdir()):
 
+    #instantiate local index, sentences list for given dialogue,
+    #dialogue file name, and local variables for eye contact and familiarity
     local_index = 0
     sentences = []
     filename = file
     eyecon = "false"
     familiar = "false"
 
+    #check for 'e' in filename representing dialogues w/ eye contact
     if filename[2] == "e":
         eyecon = "true"
 
+    #'latin squares' pattern of dialogues necessitates extra logic to check for if dialogue participants are familiar
     if int(filename[1]) < 5:
         if filename[4] == "3" or filename[4] == "4" or filename[4] == "7" or filename[4] == "8":
             familiar = "true"
@@ -46,7 +59,7 @@ for transcript_no, file in enumerate(os.listdir()):
 
 
 
-
+    #instantiate file path to current dialogue
     input_file_path = inputpath + "/" + filename
 
     #split input string & add metadata
@@ -61,7 +74,8 @@ for transcript_no, file in enumerate(os.listdir()):
 
         fh.close()
 
-    #calculate vector mebeddings & compute SS & OS
+    #calculate vector embeddings & compute SS & OS
+    #mostly just error handling for cases i=0,1,2,3 where OS & SS values are not necessarily applicable
     for idx, sentence in enumerate(sentences):
         sentence.vector = model.encode(sentence.sentence)
         #print(sentence.vector.shape)
@@ -98,11 +112,13 @@ for transcript_no, file in enumerate(os.listdir()):
                         sentence.SS = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
                         #print("\n Check 3 ")
 
+    #add finished sentences list to master list
     sentences_master.extend(sentences)
 
 #for sentence in sentences_master:
     #print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + str(sentence.OS) + " SS: " + str(sentence.SS))
 
+#output master list of sentence objects to csv
 with open(outputpath + '/results.csv', 'w', newline='',) as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'OS', 'SS'])
