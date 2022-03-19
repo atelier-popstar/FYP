@@ -3,19 +3,6 @@ import csv
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-##variables for switching root in i/o paths
-college = "C:/Users/tyet/Documents"
-home = "C:/Users/ttye7/Desktop/4th Year"
-
-#instantiate transformer model
-model = SentenceTransformer('bert-base-nli-mean-tokens')
-
-#dialogue + devscore input and results output
-inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
-randomized_inputs = home + "/FYP Auxiliary/transcripts/Transcripts_Randomized"
-outputpath = home + "/FYP/Context Vector Analysis"
-devscorepath = home + "/FYP Auxiliary/transcripts"
-
 #sentence object to store turn information
 class Sentence:
     def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar, devscore, reality):
@@ -35,13 +22,6 @@ class Dev_Score:
     def __init__(self, dialogue_id, score):
         self.dialogue_id = dialogue_id
         self.score = score
-
-#instantiate master turn array and dialogue filename
-sentences_master = []
-filename = ""
-
-#instantiate devscore objects
-devscore_file_path = devscorepath + "/deviation-scores.txt"
 
 #load in dev scores
 def load_dev_scores(devscore_file_path):
@@ -134,15 +114,15 @@ def encode_similarity(sentences):
                         sentence.SS = cos_sim(sentence.vector, sentences[tmpidx].vector)
                         #print("\n Check 3 ")
 
-def results_to_csv(sentences_master, outputpath):
+def results_to_csv(sentences, outputpath):
     #output master list of sentence objects to csv
-    with open(outputpath + '/results.csv', 'w', newline='',) as csvfile:
+    with open(outputpath + '/results_v3.csv', 'w', newline='',) as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'Dev Scores', 'Reality', 'OS', 'SS'])
-        for sentence in sentences_master:
+        for sentence in sentences:
             writer.writerow([sentence.global_index, sentence.local_index, sentence.speaker, sentence.familiar, sentence.eyecon, sentence.devscore, sentence.reality, sentence.OS, sentence.SS])
 
-def generate_data(input_path, outputpath, reality):
+def generate_data(input_path, sentences_master, reality):
     #change active directory to use os.listdir()
     os.chdir(inputpath)
 
@@ -161,16 +141,41 @@ def generate_data(input_path, outputpath, reality):
         #add finished sentences list to master list
         sentences_master.extend(sentences)
 
-    results_to_csv(sentences_master, outputpath)
+    return sentences_master
+
+##MAIN PROGRAM STARTS HERE##
+
+##variables for switching root in i/o paths
+college = "C:/Users/tyet/Documents"
+home = "C:/Users/ttye7/Desktop/4th Year"
+
+#instantiate transformer model
+model = SentenceTransformer('bert-base-nli-mean-tokens')
+
+#dialogue + devscore input and results output
+inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
+randomized_inputs = home + "/FYP Auxiliary/transcripts/Transcripts_Randomized"
+outputpath = home + "/FYP/Context Vector Analysis"
+devscorepath = home + "/FYP Auxiliary/transcripts/deviation-scores.txt"
 
 #load dev scores
-devscores = load_dev_scores(devscore_file_path)
+devscores = load_dev_scores(devscorepath)
+
+#instantiate master turn arrays
+sentences_master = []
+sentences_overlord = []
 
 #generate data for given dialogue set
-generate_data(inputpath, outputpath, 0)
+sentences_master = generate_data(inputpath, sentences_master, 0)
+sentences_overlord.extend(sentences_master)
 
+#generate data for randomized dialogues
+for i in range(10):
+    sentences_master = []
 
+    inputpath = randomized_inputs + "/Randomization " + str(i + 1)
 
-#for sentence in sentences_master:
-    #print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + str(sentence.OS) + " SS: " + str(sentence.SS))
+    sentences_master = generate_data(inputpath, sentences_master, (i + 1))
+    sentences_overlord.extend(sentences_master)
 
+results_to_csv(sentences_overlord, outputpath)
