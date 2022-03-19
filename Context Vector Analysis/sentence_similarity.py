@@ -12,12 +12,13 @@ model = SentenceTransformer('bert-base-nli-mean-tokens')
 
 #dialogue + devscore input and results output
 inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
+randomized_inputs = home + "/FYP Auxiliary/transcripts/Transcripts_Randomized"
 outputpath = home + "/FYP/Context Vector Analysis"
 devscorepath = home + "/FYP Auxiliary/transcripts"
 
 #sentence object to store turn information
 class Sentence:
-    def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar, devscore):
+    def __init__(self, global_index, local_index, speaker, sentence, eyecon, familiar, devscore, reality):
         self.local_index = local_index
         self.global_index = global_index
         self.speaker = speaker
@@ -25,6 +26,7 @@ class Sentence:
         self.eyecon = eyecon
         self.familiar = familiar
         self.devscore = devscore
+        self.reality = reality
         self.OS = 'N/A'
         self.SS = 'N/A'
 
@@ -40,33 +42,25 @@ filename = ""
 
 #instantiate devscore objects
 devscore_file_path = devscorepath + "/deviation-scores.txt"
-devscores = []
 
 #load in dev scores
-with open(devscore_file_path) as fh:
+def load_dev_scores(devscore_file_path):
+    devscores = []
+    with open(devscore_file_path) as fh:
 
-    for line in fh:
+        for line in fh:
 
-        dialogue_id, score = line.split(" ", 1)
+            dialogue_id, score = line.split(" ", 1)
 
-        devscores.append(Dev_Score(dialogue_id, score.strip()))
-
+            devscores.append(Dev_Score(dialogue_id, score.strip()))
     fh.close()
 
-#change active directory to use os.listdir()
-os.chdir(inputpath)
+    return devscores
 
-#iterate through all dialogues in input folder
-for transcript_no, file in enumerate(os.listdir()):
-
-    #instantiate local index, sentences list for given dialogue,
-    #dialogue file name, and local variables for eye contact and familiarity
+def tag_sentences(filename, inputpath, transcript_no, sentences, devscores, reality):
     local_index = 0
-    sentences = []
-    filename = file
     eyecon = "false"
     familiar = "false"
-
     #check for 'e' in filename representing dialogues w/ eye contact
     if filename[2] == "e":
         eyecon = "true"
@@ -80,8 +74,6 @@ for transcript_no, file in enumerate(os.listdir()):
         if filename[4] == "1" or filename[4] == "2" or filename[4] == "5" or filename[4] == "6":
             familiar = "true"
 
-
-
     #instantiate file path to current dialogue
     input_file_path = inputpath + "/" + filename
 
@@ -92,11 +84,18 @@ for transcript_no, file in enumerate(os.listdir()):
 
             speaker, sentence = line.strip().split(None, 1)
 
-            sentences.append(Sentence(transcript_no, local_index, speaker, sentence.strip(), eyecon, familiar, devscores[transcript_no].score))
+            sentences.append(Sentence(transcript_no, local_index, speaker, sentence.strip(), eyecon, familiar, devscores[transcript_no].score, reality))
             local_index = local_index + 1
 
         fh.close()
 
+    return sentences
+
+def cos_sim(vec1, vec2):
+    sim = cosine_similarity(vec1.reshape(1, -1), vec2.reshape(1, -1))
+    return sim[0, 0]
+
+def encode_similarity(sentences):
     #calculate vector embeddings & compute SS & OS
     #mostly just error handling for cases i=0,1,2,3 where OS & SS values are not necessarily applicable
     for idx, sentence in enumerate(sentences):
@@ -110,8 +109,7 @@ for transcript_no, file in enumerate(os.listdir()):
             if sentences[tmpidx].speaker == tmpspkr:
                 #print("\n Check 1")
                 #print(sentence.vector, sentences[tmpidx].vector)
-                SSvec = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
-                sentence.SS = SSvec[0, 0]
+                sentence.SS = cos_sim(sentence.vector, sentences[tmpidx].vector)
                 tmpidx = tmpidx - 1
                 if tmpidx >= 0:
                     while sentences[tmpidx].speaker == tmpspkr and tmpidx > 0:
@@ -119,15 +117,13 @@ for transcript_no, file in enumerate(os.listdir()):
                         #print("\n Check 2 " + str(tmpidx))
                 
                     if sentences[tmpidx].speaker != tmpspkr:
-                        OSvec = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
-                        sentence.OS = OSvec[0, 0]
+                        sentence.OS = cos_sim(sentence.vector, sentences[tmpidx].vector)
                         #print("\n Check 3 ")
 
             elif sentences[tmpidx].speaker != tmpspkr:
                 #print("\n Check 1")
                 #print(sentence.vector, sentences[tmpidx].vector)
-                OSvec = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
-                sentence.OS = OSvec[0, 0]
+                sentence.OS = cos_sim(sentence.vector, sentences[tmpidx].vector)
                 tmpidx = tmpidx - 1
                 if tmpidx >= 0:
                     while sentences[tmpidx].speaker != tmpspkr and tmpidx > 0:
@@ -135,19 +131,46 @@ for transcript_no, file in enumerate(os.listdir()):
                         #print("\n Check 2 " + str(tmpidx))
                 
                     if sentences[tmpidx].speaker == tmpspkr:
-                        SSvec = cosine_similarity(sentence.vector.reshape(1, -1), sentences[tmpidx].vector.reshape(1, -1))
-                        sentence.SS = SSvec[0, 0]
+                        sentence.SS = cos_sim(sentence.vector, sentences[tmpidx].vector)
                         #print("\n Check 3 ")
 
-    #add finished sentences list to master list
-    sentences_master.extend(sentences)
+def results_to_csv(sentences_master, outputpath):
+    #output master list of sentence objects to csv
+    with open(outputpath + '/results.csv', 'w', newline='',) as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'Dev Scores', 'Reality', 'OS', 'SS'])
+        for sentence in sentences_master:
+            writer.writerow([sentence.global_index, sentence.local_index, sentence.speaker, sentence.familiar, sentence.eyecon, sentence.devscore, sentence.reality, sentence.OS, sentence.SS])
+
+def generate_data(input_path, outputpath, reality):
+    #change active directory to use os.listdir()
+    os.chdir(inputpath)
+
+    #iterate through all dialogues in input folder
+    for transcript_no, file in enumerate(os.listdir()):
+
+        #instantiate local sentences list for given dialogue,
+
+        sentences = []
+        filename = file
+
+        sentences = tag_sentences(filename, inputpath, transcript_no, sentences, devscores, reality)
+
+        encode_similarity(sentences)
+
+        #add finished sentences list to master list
+        sentences_master.extend(sentences)
+
+    results_to_csv(sentences_master, outputpath)
+
+#load dev scores
+devscores = load_dev_scores(devscore_file_path)
+
+#generate data for given dialogue set
+generate_data(inputpath, outputpath, 0)
+
+
 
 #for sentence in sentences_master:
     #print("\nGlobal Index: " + str(sentence.global_index + 1) + " Local Index: " + str(sentence.local_index) + " Speaker: " + sentence.speaker + " Familiar: " + sentence.familiar + " Eye Contact: " + sentence.eyecon + " OS: " + str(sentence.OS) + " SS: " + str(sentence.SS))
 
-#output master list of sentence objects to csv
-with open(outputpath + '/results_v2.csv', 'w', newline='',) as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'Dev Scores', 'OS', 'SS'])
-    for sentence in sentences_master:
-        writer.writerow([sentence.global_index, sentence.local_index, sentence.speaker, sentence.familiar, sentence.eyecon, sentence.devscore, sentence.OS, sentence.SS])
