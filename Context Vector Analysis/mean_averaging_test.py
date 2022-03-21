@@ -1,16 +1,20 @@
 import csv
 
-class Reality:
-    def __init__(self, id, OSmean, SSmean):
-        self.id = id
-        self.OSmean = OSmean
-        self.SSmean = SSmean
+college = "C:/Users/tyet/Documents/GitHub"
+home = "C:/Users/ttye7/Desktop/4th Year"
 
-averages = []
+class Dialogue:
+    def __init__(self, global_id, reality, OS, SS):
+        self.global_id = global_id
+        self.reality = reality
+        self.OS = OS
+        self.SS = SS
 
-with open("C:/Users/ttye7/Desktop/4th Year/FYP/Context Vector Analysis/results_v3.csv") as csv_file:
+dialogues = []
+
+with open(college + "/FYP/Context Vector Analysis/results_v3.csv") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
-    realitytemp = 0
+    globalindextemp = 0
     OSaggregate = 0
     SSaggregate = 0
     OScnt = 0
@@ -19,7 +23,8 @@ with open("C:/Users/ttye7/Desktop/4th Year/FYP/Context Vector Analysis/results_v
     for row in csv_reader:
         if linecnt != 0:
             #print("\nReality: " + str(row[6]) + " Reality Temp: " + str(realitytemp))
-            if (int(row[6]) == realitytemp):
+
+            if (int(row[0]) == globalindextemp):
                 if (row[7] != 'N/A'):
                     OSaggregate += float(row[7])
                     OScnt += 1
@@ -28,21 +33,25 @@ with open("C:/Users/ttye7/Desktop/4th Year/FYP/Context Vector Analysis/results_v
                     SSaggregate += float(row[8])
                     SScnt += 1
             
-            
-            elif (int(row[6]) != realitytemp):
-                averages.append(Reality(realitytemp, (OSaggregate/OScnt), (SSaggregate/SScnt)))
+            elif (int(row[0]) != globalindextemp):
+                dialogues.append(Dialogue(globalindextemp, int(row[6]), (OSaggregate/OScnt), (SSaggregate/SScnt)))
                 OSaggregate = 0
                 SSaggregate = 0
                 OScnt = 0
                 SScnt = 0
-                realitytemp = int(row[6])
+                globalindextemp = int(row[0])
 
         linecnt += 1
 
-averages.append(Reality(realitytemp, (OSaggregate/OScnt), (SSaggregate/SScnt)))
+dialogues.append(Dialogue(globalindextemp, int(row[6])  (OSaggregate/OScnt), (SSaggregate/SScnt)))
 
-print("\nProcessed " + str(linecnt) + " lines.")
-for reality in averages:
-    print("\nReality: " + str(reality.id) + " OS Average: " + str(reality.OSmean) + " SS Average: " + str(reality.SSmean))
+
+with open(college + "/FYP/Context Vector Analysis/Averaged_Similarity_Results.csv", 'w', newline='',) as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(['Global Index', 'Reality', 'OS', 'SS'])
+    for dialogue in dialogues:
+        writer.writerow([dialogue.global_index, dialogue.reality, dialogue.OS, dialogue.SS])
+
+
 
 
