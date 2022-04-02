@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-model = SentenceTransformer('bert-base-nli-mean-tokens')
+model = SentenceTransformer('all-mpnet-base-v2')
 
 sentences = [
     "my wife",

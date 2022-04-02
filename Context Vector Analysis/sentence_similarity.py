@@ -116,13 +116,13 @@ def encode_similarity(sentences):
 
 def results_to_csv(sentences, outputpath):
     #output master list of sentence objects to csv
-    with open(outputpath + '/results_v3.csv', 'w', newline='',) as csvfile:
+    with open(outputpath + '/results_v4.csv', 'w', newline='',) as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'Dev Scores', 'Reality', 'OS', 'SS'])
         for sentence in sentences:
             writer.writerow([sentence.global_index, sentence.local_index, sentence.speaker, sentence.familiar, sentence.eyecon, sentence.devscore, sentence.reality, sentence.OS, sentence.SS])
 
-def generate_data(input_path, sentences_master, reality):
+def generate_data(inputpath, sentences_master, reality):
     #change active directory to use os.listdir()
     os.chdir(inputpath)
 
@@ -150,7 +150,7 @@ college = "C:/Users/tyet/Documents"
 home = "C:/Users/ttye7/Desktop/4th Year"
 
 #instantiate transformer model
-model = SentenceTransformer('bert-base-nli-mean-tokens')
+model = SentenceTransformer('all-mpnet-base-v2')
 
 #dialogue + devscore input and results output
 inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"

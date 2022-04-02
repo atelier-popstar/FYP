@@ -12,7 +12,7 @@ class Dialogue:
 
 dialogues = []
 
-with open(college + "/FYP/Context Vector Analysis/results_v3.csv") as csv_file:
+with open(home + "/FYP/Context Vector Analysis/results_v4.csv") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     globalindextemp = 0
     OSaggregate = 0
@@ -43,14 +43,14 @@ with open(college + "/FYP/Context Vector Analysis/results_v3.csv") as csv_file:
 
         linecnt += 1
 
-dialogues.append(Dialogue(globalindextemp, int(row[6])  (OSaggregate/OScnt), (SSaggregate/SScnt)))
+dialogues.append(Dialogue(globalindextemp, int(row[6]),  (OSaggregate/OScnt), (SSaggregate/SScnt)))
 
 
-with open(college + "/FYP/Context Vector Analysis/Averaged_Similarity_Results.csv", 'w', newline='',) as csvfile:
+with open(home + "/FYP/Context Vector Analysis/Averaged_Similarity_Results_v2.csv", 'w', newline='',) as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Global Index', 'Reality', 'OS', 'SS'])
     for dialogue in dialogues:
-        writer.writerow([dialogue.global_index, dialogue.reality, dialogue.OS, dialogue.SS])
+        writer.writerow([dialogue.global_id, dialogue.reality, dialogue.OS, dialogue.SS])
 
 
 
