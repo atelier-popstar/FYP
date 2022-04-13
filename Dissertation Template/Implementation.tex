@@ -1,0 +1,34 @@
+\chapter{Implementation}
+
+%% Defaults for listings
+\lstset{language=Python, captionpos=b, frame=single}
+\captionsetup{width=.8\linewidth} 
+
+
+\section{Overview of the Solution}
+
+
+%% Short caption for the table of listings - long caption for the explanation for the reader
+\includecode{Sample Code}{Lengthy caption explaining the code to the reader}{lst:snippet}{snippet.py}
+
+The code in listing~\ref{lst:snippet} is a demonstration how to include a file with code into the template.
+
+
+
+\section{Component One}
+
+The code in listing~\ref{lst:snippet2} is a demonstration how to include code in the template.
+
+%% Short caption for the table of listings - long caption for the explanation for the reader
+\begin{lstlisting}[caption={[Sample Code 2]Second Lengthy caption}, label={lst:snippet2}]
+x = 1
+if x == 1:
+    # indented four spaces
+    print("x is 1.")
+\end{lstlisting}
+
+
+
+\section{Summary}
+
+
