@@ -1,4 +1,4 @@
-from scipy.stats import tukey_hsd
+import matplotlib.pyplot as plt
 import csv
 
 
@@ -31,12 +31,8 @@ with open(inputpath) as csv_file:
         linecnt = linecnt + 1
     OS.append(OStmp)
     SS.append(SStmp)
-
-OSres = tukey_hsd(OS[0], OS[1], OS[2], OS[3], OS[4], OS[5], OS[6], OS[7], OS[8], OS[9], OS[10])
-print(OSres)
-
-        
-
-
-
-
+fig, ax = plt.subplots(1, 1)
+ax.boxplot([OS[0],OS[1],OS[2],OS[3],OS[4],OS[5],OS[6],OS[7],OS[8],OS[9],OS[10]])
+ax.set_xticklabels(["Actual", "Random 1", "Random 2", "Random 3", "Random 4", "Random 5", "Random 6", "Random 7", "Random 8", "Random 9", "Random 10"]) 
+ax.set_ylabel("Mean") 
+plt.show()
