@@ -7,7 +7,7 @@ sentences = [
     "my wife",
     "my wife",
     "my house",
-    "jeff bezos"
+    "i went to cancun on my holidays"
 ]
 
 sentence_embeddings = model.encode(sentences)
