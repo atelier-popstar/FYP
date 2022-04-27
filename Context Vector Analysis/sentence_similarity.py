@@ -116,7 +116,7 @@ def encode_similarity(sentences):
 
 def results_to_csv(sentences, outputpath):
     #output master list of sentence objects to csv
-    with open(outputpath + '/results_v4.csv', 'w', newline='',) as csvfile:
+    with open(outputpath + '/results_MiniLM_L12.csv', 'w', newline='',) as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['Global Index', 'Local Index', 'Speaker', 'Familiar', 'Eye Contact', 'Dev Scores', 'Reality', 'OS', 'SS'])
         for sentence in sentences:
@@ -150,7 +150,7 @@ college = "C:/Users/tyet/Documents"
 home = "C:/Users/ttye7/Desktop/4th Year"
 
 #instantiate transformer model
-model = SentenceTransformer('all-mpnet-base-v2')
+model = SentenceTransformer('all-MiniLM-L12-v2')
 
 #dialogue + devscore input and results output
 inputpath = home + "/FYP Auxiliary/transcripts/Transcripts_Clean"
